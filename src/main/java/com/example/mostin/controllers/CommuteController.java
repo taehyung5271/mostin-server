@@ -25,8 +25,8 @@ public class CommuteController {
         commute.setEmployeeId(payload.get("employeeId"));
         commute.setEmployeeName(payload.get("employeeName"));
         commute.setWorkPlaceName(payload.get("workPlaceName"));
-        commute.setCommuteDay(LocalDate.now());
-        commute.setStartTime(LocalTime.now());
+        commute.setCommuteDay(LocalDate.parse(payload.get("commuteDay")));
+        commute.setStartTime(LocalTime.parse(payload.get("startTime")));
         return commuteRepository.save(commute);
     }
 
@@ -37,7 +37,7 @@ public class CommuteController {
 
         return commuteRepository.findByEmployeeIdAndCommuteDay(employeeId, today).stream().findFirst()
                 .map(commute -> {
-                    commute.setEndTime(LocalTime.now());
+                    commute.setEndTime(LocalTime.parse(payload.get("endTime")));
                     return ResponseEntity.ok(commuteRepository.save(commute));
                 })
                 .orElse(ResponseEntity.notFound().build());

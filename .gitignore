@@ -1,0 +1,24 @@
+
+# Gradle
+.gradle
+build/
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# macOS
+.DS_Store
+
+# Log files
+*.log
+
+# Jar files
+*.jar
+
+# Secrets and credentials
+application.properties
+mostin-keystore.jks
+mostin_cert.cer
