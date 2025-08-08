@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumns;
 import jakarta.persistence.FetchType;
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
@@ -38,5 +39,6 @@ public class Ordering {
         @JoinColumn(name = "employeeId", referencedColumnName = "employeeId", insertable = false, updatable = false),
         @JoinColumn(name = "employeeName", referencedColumnName = "employeeName", insertable = false, updatable = false)
     })
+        @ToString.Exclude
     private Employee employee;
 }

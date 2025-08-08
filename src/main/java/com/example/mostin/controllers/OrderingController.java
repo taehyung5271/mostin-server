@@ -1,5 +1,4 @@
 package com.example.mostin.controllers;
-
 import com.example.mostin.models.Ordering;
 import com.example.mostin.repositories.OrderingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/orders")
 public class OrderingController {
-
     @Autowired
     private OrderingRepository orderingRepository;
-
     @PostMapping
     public Ordering createOrder(@RequestBody Ordering order) {
         order.setOrderingDay(LocalDate.now());
@@ -32,6 +29,11 @@ public class OrderingController {
     public List<Ordering> getOrderDetailsByDate(@RequestParam String employeeId, @RequestParam String date) {
         LocalDate localDate = LocalDate.parse(date);
         return orderingRepository.findByEmployeeIdAndOrderingDay(employeeId, localDate);
+    }
+
+    @GetMapping("/history") // New endpoint for order history
+    public List<Ordering> getOrderHistory(@RequestParam String employeeId) {
+        return orderingRepository.findByEmployeeIdOrderByOrderingDayDesc(employeeId);
     }
 
     @Transactional
