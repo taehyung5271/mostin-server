@@ -84,4 +84,10 @@ public class EmployeeController {
                     return ResponseEntity.ok().build();
                 }).orElse(ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/employees/count")
+    public ResponseEntity<Long> getEmployeeCount() {
+        long count = employeeRepository.count();
+        return ResponseEntity.ok(count);
+    }
 }

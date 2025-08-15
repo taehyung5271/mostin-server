@@ -16,7 +16,7 @@ build/
 *.log
 
 # Jar files
-*.jar
+
 
 # Secrets and credentials
 application.properties
